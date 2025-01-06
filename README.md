@@ -2,5 +2,4 @@
 Assignment submission for course DS33254 Systems &amp; Algorithms
 
 Submission by:
-Rubin Singh
-Roll no: 20221227
+Rubin Singh(20221227)
