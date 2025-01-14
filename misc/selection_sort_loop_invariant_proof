@@ -1,0 +1,31 @@
+Loop Invariant condition:
+	- A[0 to k] is sorted in ascending order. 'A' is sorted(ascending) when A[i]<=A[i+1] for all i belonging to [0, k]	//Obvious one
+	- A[k-1] is minimum of elements(if exists) A[k to n-1] for k>0  							//(unsure) Is k>0 condition a valid condition? Or statements like these valid?
+
+Initialization:
+	- k = 0. A[0 to k] = {A[0]}.
+
+	Loop invariant check:
+		- A has single element, a base case. Hence, sorted.
+		- k = 0. Skipped
+Maintenance:
+	- Assuming inductively true for k = i
+	- Post next iteration: k = i + 1
+	- A[k] is swapped with minimum value from A[k+1 to n-1]
+
+	Loop invariant check:
+		- Since in previous iteration, A[0 to k-1] is sorted and every element is less than elements of A[k to n-1]. Therefore A[0 to k] is also sorted.	//Is this approach good?
+		- We swapped minimum value with index at k from the elements A[k+1 to n-1] in current iteration. Then, A[k] is minimum of A[k+1, n-1] which satisfies the second condition
+
+
+	- Hence true for k = i + 1
+	- k = i + 2, next iteration
+
+Termination:
+	- for k = n termination happens.
+
+	Loop invariant check:
+		- 'A' is sorted for A[0 to n-1]
+		- No elements beyond A[n-1]
+
+Hence, proved
