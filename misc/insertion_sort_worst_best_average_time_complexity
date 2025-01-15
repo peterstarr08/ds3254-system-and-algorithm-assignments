@@ -1,0 +1,22 @@
+For requried sums
+
+c5*Sum {(t_j) from j - 1 to n - 1} + (c6+c7)*Sum{(t_j-1) from j - 1 to n - 1} 
+
+
+Worst case: While loop is executed all the time. So for each j, there are (j-0 +1)-1 or j prefixes. There t_j = j + 1 (accouting one extra check) 
+
+Therefore, sum starts from j = 1 to n-1
+Implies, c5*Sum {(j+1) from 0 to n - 1} + (c6+c7)*Sum{(j) from 0 to n - 1}
+
+Which obviosuly results in n^2 forms i.e. An^2 + Bn + C. (Using n(n+1)/2)
+
+
+
+Best case: t_j >= 1 , therefore this directly resolves to n - 1 times as coefficient of c5. c6 & c7 are 0 because not exececuted at all
+
+Which concludes to, An + B form
+
+
+Average case: Unsure(to ask in class)
+- Whether the whole loop is exceuted averge times. Which rasises question at what index?
+- If the half of inner loop is executed average times, then what is edge cases when the inner loop is executed 0 or odd times
