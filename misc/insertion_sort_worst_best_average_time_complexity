@@ -17,6 +17,3 @@ Best case: t_j >= 1 , therefore this directly resolves to n - 1 times as coeffic
 Which concludes to, An + B form
 
 
-Average case: Unsure(to ask in class)
-- Whether the whole loop is exceuted averge times. Which rasises question at what index?
-- If the half of inner loop is executed average times, then what is edge cases when the inner loop is executed 0 or odd times
