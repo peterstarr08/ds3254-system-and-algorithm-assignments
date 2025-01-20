@@ -29,5 +29,5 @@ Substituting $t = 2^{n}$, we get $t^2-ct \leq 0$.  This is never possible since 
 <br>
 
 
-# Q7. Show that if $f(n)=O(g(n))$ and $f(n) = \Omega(g(n))$, then $f(n) = \Theta(g(n))$
-Using same argument as done in Q2., for $max(n_1,n_2)$ and definition $c_2g(n) \leq f(n) \leq c_1g(n)$ is the requried expression.
+# Q7. Show that if $f(n)=O(g(n))$ and $f(n) = \Omega(g(n))$, then $f(n) = \Theta(h(n))$
+Using same argument as done in Q2., for $max(n_1,n_2)$ and definition $c_2h(n) \leq f(n) \leq c_1g(n)$ is the requried expression.

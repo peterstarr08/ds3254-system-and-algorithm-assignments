@@ -1,0 +1,1 @@
+First generate sample files from generator.py. Then run the C++ file for any algrothm and then run the analysis.py file. Todo: More algorithm and pipelines

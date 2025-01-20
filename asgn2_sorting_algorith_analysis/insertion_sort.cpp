@@ -7,29 +7,23 @@
 
 using namespace std;
 
-int getMin(int a[], int i, int j) {
-  int min = i;
-  for(int k = i + 1; k <= j; k++) {
-    if (a[k] < a[min]) {
-      min = k;
-    }
-  }
-  return min;
-}
 
-//Selection sort
+//Insertion sort
 void sort(int x[], int size){
-    for(int i = 0;i<size;i++){
-        int minIndex = getMin(x, i, size-1);
-        int temp = x[i];
-        x[i] = x[minIndex];
-        x[minIndex] = temp;
+    for(int i = 1;i<size;i++){
+      int key = x[i];
+      int j = i-1;
+      while(j >= 0 && x[j] > key){
+        x[j+1] = x[j];
+        j = j-1;
+      }
+      x[j+1] = key;
     }
 }
 
 int main() {
 
-  ofstream dataFile("asgn2_sorting_algorith_analysis/selection_sort_data.txt", ofstream::trunc);
+  ofstream dataFile("asgn2_sorting_algorith_analysis/insertion_sort_data.txt", ofstream::trunc);
   if (!dataFile) {
       cerr << "Error opening file for writing." << std::endl;
       return 1;
