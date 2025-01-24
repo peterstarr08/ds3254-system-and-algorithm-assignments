@@ -1,20 +1,20 @@
 import os
 import random
 
-subdirectory = "asgn2_sorting_algorith_analysis\data\samples"
+subdirectory = "asgn2_sorting_algorith_analysis/data"
 os.makedirs(subdirectory, exist_ok=True)
 
-n = 10000
+output_file = os.path.join(subdirectory, "random_arrays.txt")
 
-for i in range(1, n + 1):
-    random_integers = [random.randint(1, 100) for _ in range(i)]
+n = 5000
 
-    fileName = f"file{i}.txt"
-    filePath = os.path.join(subdirectory, fileName)
+print(f"Creating a single file with {n} arrays...Please wait, it may take a while.")
 
-    with open(filePath, "w") as file:
-        file.write("\n".join(map(str, random_integers)))
-    
-    print(fileName,'created')
+with open(output_file, "w") as file:
+    for i in range(1, n + 1):
+        random_integers = [random.randint(1, 100) for _ in range(i)]
+        file.write(" ".join(map(str, random_integers)) + "\n") 
+        print(f"\rProgress: {i} of {n} arrays created", end="")
 
-print(f"Created {n} files in the '{subdirectory}' directory.")
+
+print(f"\nCreated a single file with {n} arrays in the '{output_file}' file.")
