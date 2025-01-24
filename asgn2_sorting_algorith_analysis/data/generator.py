@@ -6,7 +6,7 @@ os.makedirs(subdirectory, exist_ok=True)
 
 output_file = os.path.join(subdirectory, "random_arrays.txt")
 
-n = 5000
+n = 10000
 
 print(f"Creating a single file with {n} arrays...Please wait, it may take a while.")
 

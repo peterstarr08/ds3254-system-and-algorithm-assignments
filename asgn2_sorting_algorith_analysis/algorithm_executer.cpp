@@ -10,7 +10,7 @@
 
 using namespace std;
 
-const int iterations = 3;
+const int iterations = 1;
 
 
 int getMin(int a[], int i, int j) {
@@ -113,6 +113,33 @@ void MergeSort(int a[], int p, int r){
     Merge(a, p, q, r);
 }
 
+int Partition(int a[], int p, int r){
+    int pivot = a[r];
+    int i = p - 1;
+    
+    for(int j = p;j<r;j++){
+        if(a[j]<=pivot){
+            i = i + 1;
+            int temp = a[j];
+            a[j] = a[i];
+            a[i] = temp;
+        }
+    }
+    
+    int temp = a[i+1];
+    a[i+1] = a[r];
+    a[r] = temp;
+    
+    return i + 1;
+}
+
+void QuickSort(int a[], int p, int r){
+    if(p<r){
+        int q = Partition(a,p,r);
+        QuickSort(a,p, q - 1 );
+        QuickSort(a, q + 1, r);
+    }
+}
 
 int main() {
 
@@ -122,7 +149,7 @@ int main() {
       return 1;
   }
   
-  dataFile << "size,time_selection_sort,time_insert_sort,time_merge_sort\n";
+  dataFile << "size,time_selection_sort,time_insert_sort,time_merge_sort,time_quick_sort\n";
 
   ifstream sampleFile("asgn2_sorting_algorith_analysis/data/random_arrays.txt");
   if (!sampleFile.is_open()) {
@@ -136,6 +163,7 @@ int main() {
   double timeSelectionSort[iterations];
   double timeInsertionSort[iterations];
   double timeMergeSort[iterations];
+  double timeQuickSort[iterations];
   auto analysisStart = chrono::high_resolution_clock::now();
   
   while(getline(sampleFile, array, '\n')){  
@@ -179,13 +207,24 @@ int main() {
 
       shuffler(a, counter);
 
+
+      start = chrono::high_resolution_clock::now();
+      QuickSort(a, 0, counter-1);
+      end = chrono::high_resolution_clock::now();
+      duration = end - start;
+
+
+      timeQuickSort[i] = duration.count();
+
+      shuffler(a, counter);
+
       auto analysisCheckpoint = chrono::high_resolution_clock::now();
       chrono::duration<double> durationAnalysis = analysisCheckpoint - analysisStart;
 
       cout << "\rSorted array size:" << counter << " Time elapsed " << durationAnalysis.count() << "s." << flush;
     }
 
-    dataFile << counter << "," << getMean(timeSelectionSort, iterations) << "," << getMean(timeInsertionSort, iterations)<< "," << getMean(timeMergeSort, iterations) << "\n";
+    dataFile << counter << "," << getMean(timeSelectionSort, iterations) << "," << getMean(timeInsertionSort, iterations)<< "," << getMean(timeMergeSort, iterations)<< "," << getMean(timeQuickSort, iterations) << "\n";
 
 
     counter++;
