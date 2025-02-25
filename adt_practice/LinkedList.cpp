@@ -58,6 +58,12 @@ class LinkedList{
                 head = tail = nullptr;
                 return;
             }
+            if(head->val==val){
+                Node *tempHead = head;
+                head = head->node;
+                delete tempHead;
+                return;
+            }
             Node *temp = head;
             while((temp->node) && (temp->node)->val!=val){
                 temp = temp->node;
@@ -93,22 +99,124 @@ class LinkedList{
 
         }
 
+        int length() const{
+            if(head==tail && head==nullptr){
+                return 0;
+            }
+            int counter = 1;
+            Node *temp = head;
+            while(temp->node){
+                counter++;
+                temp = temp->node;
+            }
+
+            return counter;
+        }
+
+        // T& removeFirst(){
+        //     int length = this->length();
+        //     if(length==0){
+        //         throw std::runtime_error("Tried to remove from an empty array");
+        //     }
+        //     if(length==1){
+        //         T &val = head->val;
+        //         head = nullptr;
+        //         tail = nullptr;
+        //         return val;
+        //     }
+
+        //     Node *temp = head;
+        //     T &val = head->val;
+        //     head = head->node;
+        //     delete temp;
+        //     return val;
+        // }
+        T removeFirst(){
+            int length = this->length();
+            if(length==0){
+                throw std::runtime_error("Tried to remove from an empty array");
+            }
+            if(length==1){
+                T &val = head->val;
+                head = nullptr;
+                tail = nullptr;
+                return val;
+            }
+
+            Node *temp = head;
+            T val = head->val;
+            head = head->node;
+            delete temp;
+            return val;
+        }
+
+        T removeLast(){
+            int length = this->length();
+            if(length==0){
+                throw std::runtime_error("Tried to remove from an empty array");
+            }
+            if(length==1){
+                T &val = head->val;
+                head = nullptr;
+                tail = nullptr;
+                return val;
+            }
+
+            Node *temp = head;
+            while(temp->node!=tail){
+                temp = temp->node;
+            }
+            T val = tail->val;
+            delete tail;
+            tail = temp;
+            
+            tail->node = nullptr;
+            return val;
+        }
 };
+
+
+
 
 int main(){
     LinkedList<int> linkedList;
     linkedList.print();
-    linkedList.append(55);
+    
+    linkedList.append(1);
     linkedList.print();
-    linkedList.prepend(66);
+
+    cout << "First element " << linkedList.removeFirst() << endl;
     linkedList.print();
+
+
+    linkedList.append(2);
     linkedList.append(3);
+
     linkedList.print();
+
+    cout << "First element " << linkedList.removeFirst() << endl;
+    linkedList.print();
+
+    linkedList.append(5);
+    linkedList.append(4);
+    linkedList.append(2);
+    linkedList.append(3);
     linkedList.append(0);
     linkedList.print();
-    linkedList.prepend(999);
+
+    cout << "Last element " << linkedList.removeLast() << endl;
     linkedList.print();
-    linkedList.remove(0);
+
+    cout << "Last element " << linkedList.removeLast() << endl;
     linkedList.print();
+    cout << "Last element " << linkedList.removeLast() << endl;
+    linkedList.print();
+    cout << "Last element " << linkedList.removeLast() << endl;
+    linkedList.print();
+    cout << "Last element " << linkedList.removeLast() << endl;
+    linkedList.print();
+    cout << "Last element " << linkedList.removeLast() << endl;
+    linkedList.print();
+   
     return 1;
 }
